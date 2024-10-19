@@ -1,10 +1,10 @@
-﻿using bwms_core_business_layer.SystemServices.Interfaces;
-using bwms_core_domain.SystemModels;
+﻿using bwms_core_domain.SystemModels;
 using bwms_core_repository;
 using Newtonsoft.Json;
 using Microsoft.Data.SqlClient;
+using bwms_core_business_layer.Interfaces;
 
-namespace bwms_core_business_layer.SystemServices
+namespace bwms_core_business_layer
 {
     public class UserServiceImpl : IUserService
     {

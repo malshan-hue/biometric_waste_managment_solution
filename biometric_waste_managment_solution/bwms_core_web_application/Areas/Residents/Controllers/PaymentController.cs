@@ -3,6 +3,7 @@ using Stripe.Checkout;
 using Stripe;
 using bwms_core_domain.SystemModels;
 using Newtonsoft.Json;
+using devspark_core_model.SystemModels;
 
 namespace bwms_core_web_application.Areas.Residents.Controllers
 {
@@ -73,7 +74,8 @@ namespace bwms_core_web_application.Areas.Residents.Controllers
             {
                 Session session = service.Create(options);
 
-                return Json(new { redirectUrl = session.Url });
+                //return Json(new { redirectUrl = session.Url });
+                return Redirect(session.Url);
             }
             catch (Exception)
             {
@@ -84,6 +86,8 @@ namespace bwms_core_web_application.Areas.Residents.Controllers
         [HttpGet]
         public async Task<IActionResult> PaymentComplete(string sessionId)
         {
+            var userId = HttpContext.Session.GetInt32("UserId");
+
             List<SystemNotification> systemNotifications = new List<SystemNotification>();
             SystemNotification systemNotification = new SystemNotification();
             bool status = false;
@@ -117,16 +121,17 @@ namespace bwms_core_web_application.Areas.Residents.Controllers
                 onlinePaymentResponse.PaymentErrorDescription = paymentIntent?.LastPaymentError?.ErrorDescription;
                 onlinePaymentResponse.OnlinePaymentGlobalIdentity = Guid.NewGuid();
                 onlinePaymentResponse.PaymentStatus = paymentIntent.Status;
+                onlinePaymentResponse.CustomerId = Convert.ToInt32(userId);
 
                 if (!paymentIntent.Status.Equals("succeeded"))
                 {
                     #region SYSTEM NOTIFICATION
 
                     systemNotification.Title = "Error creating payment";
-                    systemNotification.Message = "Payment didn't saved properly";
+                    systemNotification.Message = "Payment not saved properly";
                     systemNotification.Time = DateTime.Now.ToString("dd/MM/yyyy");
-                    systemNotification.NotificationType = Enum.GetName(typeof(NotificationType), NotificationType.Warning);
-                    systemNotification.NotificationPlacement = Enum.GetName(typeof(NotificationType), NotificationPlacement.TopRight);
+                    systemNotification.NotificationType = ModelServices.GetEnumDisplayName(NotificationType.Danger);
+                    systemNotification.NotificationPlacement = ModelServices.GetEnumDisplayName(NotificationPlacement.TopRight);
 
                     systemNotifications.Add(systemNotification);
 
@@ -145,11 +150,11 @@ namespace bwms_core_web_application.Areas.Residents.Controllers
 
             #region SYSTEM NOTIFICATION
 
-            systemNotification.Title = "Error creating payment";
-            systemNotification.Message = "Payment didn't saved properly";
+            systemNotification.Title = "Payment Success";
+            systemNotification.Message = "Payment crated successfully";
             systemNotification.Time = DateTime.Now.ToString("dd/MM/yyyy");
-            systemNotification.NotificationType = Enum.GetName(typeof(NotificationType), NotificationType.Success);
-            systemNotification.NotificationPlacement = Enum.GetName(typeof(NotificationType), NotificationPlacement.TopRight);
+            systemNotification.NotificationType = ModelServices.GetEnumDisplayName(NotificationType.Success);
+            systemNotification.NotificationPlacement = ModelServices.GetEnumDisplayName(NotificationPlacement.TopRight);
 
             systemNotifications.Add(systemNotification);
 
@@ -157,7 +162,7 @@ namespace bwms_core_web_application.Areas.Residents.Controllers
 
             #endregion
 
-            return RedirectToAction("Index", "CheckOut");
+            return RedirectToAction("Index", "Payment");
         }
 
         [HttpGet]
@@ -199,7 +204,7 @@ namespace bwms_core_web_application.Areas.Residents.Controllers
 
             #endregion
 
-            return RedirectToAction("Index", "CheckOut");
+            return RedirectToAction("Index", "Payment");
         }
 
         public class Payment

@@ -1,3 +1,145 @@
 ﻿@{
     Layout = "~/Views/Shared/_AuthorityLayout.cshtml";
 }
+
+<style>
+    .blinker {
+        width: 15px;
+        height: 15px;
+        background-color: red;
+        border-radius: 50%;
+    }
+
+        .blinker.active {
+            background-color: transparent;
+        }
+
+    .leaflet-div-icon {
+        background: transparent;
+        border: none;
+    }
+</style>
+
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <div class="row mb-4">
+        <div class="col-6">
+            <h4 class="fw-bold py-3"><span class="text-muted fw-light">Authority Portal /</span> Waste Collection Dashboard</h4>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <div id="map" style="height: 400px;"></div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <!--left card-->
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <h5 class="card-header">Shedule for today</h5>
+                        <div class="table-responsive text-nowrap">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Customer Name</th>
+                                        <th>Contact Number</th>
+                                        <th>Email</th>
+                                        <th>Address</th>
+                                        <th>Estimated Volume (kg)</th>
+                                        <th>Bin Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-border-bottom-0">
+                                    <tr>
+                                        <td>2024-10-21</td>
+                                        <td>Organic Waste</td>
+                                        <td><span class="badge bg-label-warning">Scheduled</span></td>
+                                        <td>123 Green St, Springfield</td>
+                                        <td>250 kg</td>
+                                        <td><a href="#">View Map</a></td>
+                                        <td><a href="#">View Map</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- / Content -->
+
+@section Scripts {
+    <script>
+        // Example JSON data from backend (you can replace it with actual JSON data passed)
+        var customerData = [
+            {
+                "customerName": "Jehan Methana Inne",
+                "latitude": 6.914861,
+                "longitude": 79.972222,
+                "contactNumber": "1234567890",
+                "email": "johndoe@example.com",
+                "address": "Ciggarate ekak gananwa",
+                "estimatedVolume": "250 kg",
+                "binStatus": "Scheduled"
+            }
+        ];
+
+        // Initialize the map
+        var map = L.map('map').setView([6.914861, 79.972222], 13); // Default coordinates
+
+        // Add map tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Waste Collection Map data &copy; <a href="https://www.openstreetmap.org/copyright">BWMS</a>'
+        }).addTo(map);
+
+        // Add markers and bind popups for each customer
+        customerData.forEach(function (customer) {
+            var marker = L.marker([customer.latitude, customer.longitude], {
+                icon: L.divIcon({
+                    className: 'blinking-marker', // Class for blinking effect
+                    html: '<div class="blinker"></div>'
+                })
+            }).addTo(map)
+                .bindPopup('<b>' + customer.customerName + '</b><br>' + customer.address);
+
+            // Hover effect to show popup
+            marker.on('mouseover', function (e) {
+                this.openPopup();
+            }).on('mouseout', function (e) {
+                this.closePopup();
+            });
+
+            // Append data to the table
+            $('#customer-table').append(`
+                <tr>
+                    <td>${customer.customerName}</td>
+                    <td>${customer.contactNumber}</td>
+                    <td>${customer.email}</td>
+                    <td>${customer.address}</td>
+                    <td>${customer.estimatedVolume}</td>
+                    <td><span class="badge bg-label-warning">${customer.binStatus}</span></td>
+                    <td><a href="#">View Map</a></td>
+                </tr>
+            `);
+        });
+
+        // jQuery to toggle blinking effect
+        setInterval(function () {
+            $('.blinker').toggleClass('active');
+        }, 1000);
+
+    </script>
+}

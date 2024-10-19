@@ -11,6 +11,7 @@ namespace bwms_core_domain.SystemModels
         Paper=1,
         Plastic=2,
         Glass =3,
-        Organic =4
+        Organic =4,
+        None = 5
     }
 }

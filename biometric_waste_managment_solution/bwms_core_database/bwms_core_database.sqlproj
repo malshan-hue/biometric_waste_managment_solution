@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{0f601abd-ffa1-48ce-aee2-89cbad6b0fa5}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql160DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureV12DatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -60,10 +60,16 @@
     <Folder Include="Tables" />
     <Folder Include="StoredProcedures\System" />
     <Folder Include="Tables\System" />
+    <Folder Include="Tables\Authority" />
+    <Folder Include="Tables\Residents" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="StoredProcedures\System\CreateUser.sql" />
     <Build Include="Tables\System\User.sql" />
     <Build Include="StoredProcedures\System\GetUserByUserName.sql" />
+    <Build Include="Tables\Authority\Employee.sql" />
+    <Build Include="Tables\Authority\EmployeeDevice.sql" />
+    <Build Include="Tables\Residents\Customer.sql" />
+    <Build Include="Tables\Residents\WastePickupSchedule.sql" />
   </ItemGroup>
 </Project>

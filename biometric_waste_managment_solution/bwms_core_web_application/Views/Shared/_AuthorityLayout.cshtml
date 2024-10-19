@@ -46,6 +46,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
 </head>
 
 <body>
@@ -72,36 +73,18 @@
                     <li class="menu-item">
                         <a href="@Url.Action("Index", "Dashboard", new {Area = "Residents"})" class="menu-link">
                             <span class="material-symbols-outlined" style="margin-right: 8px;">
-                                OverView
+                                Dashboard
                             </span>
-                            <div data-i18n="Analytics">OverView</div>
+                            <div data-i18n="Analytics">Dashboard</div>
                         </a>
                     </li>
 
                     <li class="menu-item">
-                        <a href="@Url.Action("Index", "Notification", new {Area = "Residents"})" class="menu-link">
+                        <a href="@Url.Action("Index", "Customers", new {Area = "Residents"})" class="menu-link">
                             <span class="material-symbols-outlined" style="margin-right: 8px;">
-                                Notifications
+                                People
                             </span>
-                            <div data-i18n="Analytics">Notifications</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a href="@Url.Action("Index", "Schedule", new {Area = "Residents"})" class="menu-link">
-                            <span class="material-symbols-outlined" style="margin-right: 8px;">
-                                Schedule
-                            </span>
-                            <div data-i18n="Analytics">Schedules</div>
-                        </a>
-                    </li>
-
-                    <li class="menu-item">
-                        <a href="@Url.Action("Index", "Payment", new {Area = "Residents"})" class="menu-link">
-                            <span class="material-symbols-outlined" style="margin-right: 8px;">
-                                Payments
-                            </span>
-                            <div data-i18n="Analytics">Payments</div>
+                            <div data-i18n="Analytics">Customers</div>
                         </a>
                     </li>
                 </ul>
@@ -199,7 +182,7 @@
                                     <div class="dropdown-divider"></div>
                                     </li> *@
                                     <li>
-                                        <a class="dropdown-item" href="@Url.Action("Logout", "User", new { Area = "" })">
+                                        <a class="dropdown-item" href="@Url.Action("Logout", "Access", new { Area = "" })">
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>
@@ -262,6 +245,7 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 
     <!--system notification-->
     @{

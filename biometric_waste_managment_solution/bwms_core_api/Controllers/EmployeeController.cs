@@ -1,10 +1,10 @@
-﻿using bwms_core_domain.UserModels;
+﻿using bwms_core_domain.AuthorityModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace bwms_core_api.Controllers
 {
-	[Route("api/[controller]")]
+    [Route("api/[controller]")]
 	[ApiController]
 	public class EmployeeController : ControllerBase
 	{

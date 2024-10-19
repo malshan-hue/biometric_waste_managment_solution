@@ -19,7 +19,7 @@
                     <h4 class="mb-2">Welcome to BEMS</h4>
                     <p class="mb-4">Please log-in to your account</p>
 
-                    <form asp-action="Login" asp-controller="Residents" id="login-form" class="mb-3" method="POST">
+                    <form asp-action="Login" asp-controller="Access" id="login-form" class="mb-3" method="POST">
 
                         <div class="row mb-3">
                             <label asp-for="UserName" class="form-label">@Html.DisplayNameFor(model => model.UserName)</label>
@@ -55,7 +55,7 @@
 
                     <p class="text-center">
                         <span>New on our platform?</span>
-                        <a href="@Url.Action("", "")">
+                        <a href="@Url.Action("Register", "Access")">
                             <span>Register</span>
                         </a>
                     </p>

@@ -9,6 +9,7 @@ namespace bwms_core_domain.SystemModels
     public class OnlinePaymentResponse
     {
         public long OnlinePaymentResponseId { get; set; }
+        public int CustomerId { get; set; }
         public string PaymentTransactionIdentification { get; set; } = string.Empty;
         public string CardCountry { get; set; } = string.Empty;
         public string CardLastFourDigits { get; set; } = string.Empty;

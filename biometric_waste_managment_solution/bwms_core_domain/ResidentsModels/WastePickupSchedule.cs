@@ -12,7 +12,7 @@ namespace bwms_core_domain.ResidentsModels
     {
         public int WastePickupScheduleId { get; set; }
 
-        public int UserId { get; set; }
+        public int CustomerId { get; set; }
 
         [DisplayName("Scheduled Date")]
         public DateTime ScheduledDate { get; set; }
@@ -32,5 +32,9 @@ namespace bwms_core_domain.ResidentsModels
         public int? DriverId { get; set; }
 
         public string? MapLocation { get; set; } = string.Empty;
+
+        #region NAVIGATIONAL PROPERTICE
+        public Customer Customer { get; set; } = new Customer();
+        #endregion
     }
 }

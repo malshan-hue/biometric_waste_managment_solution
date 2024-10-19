@@ -1,6 +1,6 @@
-using bwms_core_business_layer.SystemServices.Interfaces;
-using bwms_core_business_layer.SystemServices;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using bwms_core_business_layer.Interfaces;
+using bwms_core_business_layer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,15 +11,15 @@ builder.Services.AddSession();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 .AddCookie(options =>
 {
-    options.LoginPath = "/User/Login";
-    options.LogoutPath = "/User/Logout";
+    options.LoginPath = "/Acccess/Login";
+    options.LogoutPath = "/Acccess/Logout";
     options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
 });
 
 #region System Service
 
 var configuration = builder.Configuration;
-var connectionString = configuration.GetConnectionString("malshan");
+var connectionString = configuration.GetConnectionString("bwms");
 
 builder.Services.AddSingleton<IDatabaseService>(provider =>
 {

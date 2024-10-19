@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using SimpleCrypto;
 using System;
-using bwms_core_business_layer.SystemServices.Interfaces;
 using Microsoft.DotNet.Scaffolding.Shared.CodeModifier.CodeChange;
 using Newtonsoft.Json;
 using Org.BouncyCastle.Asn1.Crmf;
 using System.Security.Claims;
+using bwms_core_business_layer.Interfaces;
 
 namespace bwms_core_web_application.Controllers
 {
@@ -138,11 +138,12 @@ namespace bwms_core_web_application.Controllers
                 PasswordSalt = _crypto.Salt,
                 ActivationCode = _random.Next(100000, 1000000),
                 UserGlobalIdentity = Guid.NewGuid(),
+                IsAuthority = userLogin.UserName.Contains("bwms") ? true : false
             };
 
             var status = _userService.CreateUser(user);
 
-            return RedirectToAction("Login", "Residents");
+            return RedirectToAction("Login", "Access");
         }
 
         [HttpGet]
@@ -152,7 +153,7 @@ namespace bwms_core_web_application.Controllers
 
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
-            return RedirectToAction("Login", "Residents");
+            return RedirectToAction("Login", "Access");
         }
     }
 }

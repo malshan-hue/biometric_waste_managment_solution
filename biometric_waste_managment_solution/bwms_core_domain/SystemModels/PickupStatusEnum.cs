@@ -9,6 +9,7 @@ namespace bwms_core_domain.SystemModels
     public enum PickupStatusEnum: int
     {
         Scheduled =1,
-        Completed=2
+        Completed=2,
+        Pending = 3
     }
 }

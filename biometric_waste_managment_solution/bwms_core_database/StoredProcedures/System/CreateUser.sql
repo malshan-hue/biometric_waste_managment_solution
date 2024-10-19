@@ -13,8 +13,6 @@ BEGIN
 		[Password] NVARCHAR(100),
 		[PasswordSalt] NVARCHAR(100),
 		[ActivationCode] INT,
-		[CreatedDate] DATETIME,
-		[LastLogginDate] DATETIME,
 		[IsAuthority] BIT
 	);
 

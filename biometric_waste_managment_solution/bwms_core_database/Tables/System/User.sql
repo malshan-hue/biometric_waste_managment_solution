@@ -11,5 +11,5 @@
 	[IsActive] BIT DEFAULT 0,
 	[IsDeleted] BIT DEFAULT 0
 
-	CONSTRAINT [User_UserId_PK] PRIMARY KEY ([userId])
+	CONSTRAINT [User_UserId_PK] PRIMARY KEY ([UserId])
 )

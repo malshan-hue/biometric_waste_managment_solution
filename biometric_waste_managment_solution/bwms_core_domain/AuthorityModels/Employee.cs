@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bwms_core_domain.UserModels
+namespace bwms_core_domain.AuthorityModels
 {
     public class Employee : User
     {
@@ -14,6 +14,11 @@ namespace bwms_core_domain.UserModels
         public string Email { get; set; } = string.Empty;
         public string EmployeeCode { get; set; } = string.Empty;
         public string Phone { get; set; } = string.Empty;
-        public string DeviceId { get; set; } = string.Empty;
+
+        #region NAVIGATIONAL PROPERTIES
+        public ICollection<EmployeeDevice> EmployeeDevices { get; set; } = new List<EmployeeDevice>();
+
+        #endregion
+
     }
 }

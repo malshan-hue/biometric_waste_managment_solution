@@ -1,11 +1,11 @@
-﻿using bwms_core_business_layer.SystemServices.Interfaces;
+﻿using bwms_core_business_layer.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace bwms_core_business_layer.SystemServices
+namespace bwms_core_business_layer
 {
     public class DatabaseServiceImpl : IDatabaseService
     {
