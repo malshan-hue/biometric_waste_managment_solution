@@ -7,15 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\" />
-    <Folder Include="Areas\AdminDashboard\Controllers\" />
-    <Folder Include="Areas\AdminDashboard\Data\" />
-    <Folder Include="Areas\AdminDashboard\Models\" />
-    <Folder Include="Areas\AdminDashboard\Views\" />
-    <Folder Include="Areas\UserDashboard\Controllers\" />
-    <Folder Include="Areas\UserDashboard\Data\" />
-    <Folder Include="Areas\UserDashboard\Models\" />
-    <Folder Include="Areas\UserDashboard\Views\" />
+    <Folder Include="Areas\Authority\Controllers\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +15,7 @@
     <PackageReference Include="itextsharp.xmlworker" Version="5.5.13.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
     <PackageReference Include="SimpleCrypto" Version="0.3.30.26" />
+    <PackageReference Include="Stripe.net" Version="46.2.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\bwms_core_domain\bwms_core_domain.csproj" />
+    <ProjectReference Include="..\bwms_core_repository\bwms_core_repository.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,90 @@
+﻿@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <div class="row mb-4">
+        <div class="col-6">
+            <h4 class="fw-bold py-3"><span class="text-muted fw-light">Residents Portal /</span> Payments</h4>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <!--left card-->
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="row">
+                            <h5 class="card-header">Table Basic</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive text-nowrap">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Payment Number</th>
+                                                <th>Month</th>
+                                                <th>Amount</th>
+                                                <th>Discoount</th>
+                                                <th>Total Payable</th>
+                                                <th>Payment Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="table-border-bottom-0">
+                                            <tr>
+                                                <td>2024-10-21</td>
+                                                <td>Organic Waste</td>
+                                                <td><span class="badge bg-label-warning">Scheduled</span></td>
+                                                <td>123 Green St, Springfield</td>
+                                                <td>250 kg</td>
+                                                <td><span class="badge bg-label-warning">Paid</span></td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i>Pay</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>2024-10-22</td>
+                                                <td>Plastic & Recyclables</td>
+                                                <td><span class="badge bg-label-success">Completed</span></td>
+                                                <td>456 Blue Ave, Springfield</td>
+                                                <td>150 kg</td>
+                                                <td><span class="badge bg-label-warning">Not-Paid</span></td>
+                                                <td>
+                                                    <div class="dropdown">
+                                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                            <i class="bx bx-dots-vertical-rounded"></i>
+                                                        </button>
+                                                        <div class="dropdown-menu">
+                                                            <a class="dropdown-item" asp-action="Checkout" asp-controller="Payment"><i class="bx bx-trash me-1"></i>Pay</a>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <!-- Add more rows as needed -->
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- / Content -->

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using bwms_core_domain.SystemModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,24 @@ namespace bwms_core_repository
         {
             _connectionString = connectionString;
         }
+
+        #region USER REPOSITORY
+
+        private DataManager<User> _userDataManager;
+        public DataManager<User> UserDataManager
+        {
+            get
+            {
+                if(this._userDataManager == null)
+                {
+                    this._userDataManager = new DataManager<User>(_connectionString);
+                }
+
+                return this._userDataManager;
+            }
+        }
+
+        #endregion
 
         private bool _disposed = false;
         protected void Dispose(bool disposing)

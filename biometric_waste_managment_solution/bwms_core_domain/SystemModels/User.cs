@@ -12,8 +12,10 @@ namespace bwms_core_domain.SystemModels
     {
         public int UserId { get; set; }
 
+        [DisplayName("User Name")]
         public string UserName { get; set; } = string.Empty;
 
+        [DisplayName("Password")]
         public string Password { get; set; } = string.Empty;
 
         public string PasswordSalt { get; set; } = string.Empty;
@@ -25,7 +27,10 @@ namespace bwms_core_domain.SystemModels
         public DateTime LastLogginDate { get; set; } = DateTime.MinValue;
 
         [DefaultValue("false")]
-        public bool IsAdmin { get; set; }
+        public bool IsAuthority { get; set; }
+
+        [DefaultValue("false")]
+        public bool IsActive { get; set; }
 
         [DefaultValue("false")]
         public bool IsDeleted { get; set; }

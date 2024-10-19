@@ -1,0 +1,67 @@
+﻿@using bwms_core_domain.SystemModels;
+@model User
+
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+}
+
+<div class="container-xxl">
+    <div class="authentication-wrapper authentication-basic container-p-y">
+        <div class="authentication-inner">
+            <!-- Register -->
+            <div class="card">
+                <div class="card-body">
+                    <!-- Logo -->
+                    <div class="app-brand justify-content-center">
+                        <img src="~/assets/images/logos/Shan D. Wanigasuriya.png" alt class="w-px-150 h auto" />
+                    </div>
+                    <!-- /Logo -->
+                    <h4 class="mb-2">Welcome to BEMS</h4>
+                    <p class="mb-4">Please log-in to your account</p>
+
+                    <form asp-action="Login" asp-controller="Residents" id="login-form" class="mb-3" method="POST">
+
+                        <div class="row mb-3">
+                            <label asp-for="UserName" class="form-label">@Html.DisplayNameFor(model => model.UserName)</label>
+                            <div class="input-group">
+                                <input asp-for="UserName" name="UserName" type="email" id="user-name" class="form-control" placeholder="@Html.DisplayNameFor(model => model.UserName)" />
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label asp-for="Password" class="form-label">@Html.DisplayNameFor(model => model.Password)</label>
+                            <div class="input-group">
+                                <input 
+                                    asp-for="Password"
+                                    type="password"
+                                    name="Password"
+                                    class="form-control"
+                                    id="password"
+                                    placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
+                                    aria-describedby="Password" />
+                                <span id="assword-span" class="input-group-text cursor-pointer">
+                                    <i class="bx bx-hide"></i>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-12 text-center">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <p class="text-center">
+                        <span>New on our platform?</span>
+                        <a href="@Url.Action("", "")">
+                            <span>Register</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <!-- /Register -->
+        </div>
+    </div>
+</div>

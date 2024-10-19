@@ -1,0 +1,9 @@
+﻿CREATE PROCEDURE [dbo].[GetUserByUserName]
+	@userName NVARCHAR(200) = ''
+	WITH ENCRYPTION
+AS
+BEGIN
+
+	SELECT * FROM [User] WHERE UserName = @userName FOR JSON PATH
+
+END

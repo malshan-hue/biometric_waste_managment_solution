@@ -29,7 +29,12 @@ builder.Services.AddSingleton<IDatabaseService>(provider =>
 });
 #endregion
 
+#region USER SERVICE
+builder.Services.AddSingleton<IUserService, UserServiceImpl>();
+#endregion
 var app = builder.Build();
+
+Stripe.StripeConfiguration.ApiKey = "sk_test_51PB1CBIkQxNhsnF8eZtM0ZCGLxLQvILsgHjC6PumS3hntAXOy9w5TD9Q4MfBNB0cDrG3LXAexqaPvFNVdBevDt4c00ewD6mnHv";
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -49,14 +54,14 @@ app.UseAuthorization();
 app.UseSession();
 
 app.MapAreaControllerRoute(
-    name: "AdminDashboard",
-    areaName: "AdminDashboard",
-    pattern: "AdminDashboard/{controller=Dashboard}/{action=Index}/{id?}");
+    name: "Authority",
+    areaName: "Authority",
+    pattern: "Authority/{controller=Dashboard}/{action=Index}/{id?}");
 
 app.MapAreaControllerRoute(
-    name: "UserDashboard",
-    areaName: "UserDashboard",
-    pattern: "UserDashboard/{controller=Dashboard}/{action=Index}/{id?}");
+    name: "Residents",
+    areaName: "Residents",
+    pattern: "Residents/{controller=Dashboard}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "areaRoute",
@@ -64,6 +69,6 @@ app.MapControllerRoute(
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=User}/{action=Login}/{id?}");
+    pattern: "{controller=Access}/{action=Login}/{id?}");
 
 app.Run();

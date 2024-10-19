@@ -1,0 +1,91 @@
+﻿@using bwms_core_domain.SystemModels;
+
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+
+    <div class="row mb-4">
+        <div class="col-6">
+            <h4 class="fw-bold py-3"><span class="text-muted fw-light">Residents Portal /</span> Waste Collection</h4>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <!--left card-->
+        <div class="col-12">
+            <div class="row">
+                <div class="col-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <canvas id="wasteCollectionPieChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="card mb-4">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item"><strong>Total Waste Collected:</strong> 2,500 tons this month</li>
+                            <li class="list-group-item"><strong>Recycling Rate:</strong> 65% of waste is recycled</li>
+                            <li class="list-group-item"><strong>Organic Waste Processed:</strong> 600 tons composted</li>
+                            <li class="list-group-item"><strong>Plastic Waste:</strong> 500 tons collected</li>
+                            <li class="list-group-item"><strong>Reduction in Landfill Usage:</strong> 20% compared to last year</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- / Content -->
+
+@section Scripts{
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var ctx = document.getElementById('wasteCollectionPieChart').getContext('2d');
+            var wasteCollectionPieChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Paper', 'Plastic', 'Glass', 'Organic'],
+                    datasets: [{
+                        label: 'Waste Collection',
+                        data: [30, 20, 25, 25], // Example percentages; adjust as needed
+                        backgroundColor: [
+                            '#36A2EB',  // Paper color
+                            '#FF6384',  // Plastic color
+                            '#FFCE56',  // Glass color
+                            '#4BC0C0'   // Organic color
+                        ],
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function (tooltipItem) {
+                                    return tooltipItem.label + ': ' + tooltipItem.raw + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+
+
+}

@@ -58,5 +58,12 @@
     <Folder Include="Properties" />
     <Folder Include="StoredProcedures" />
     <Folder Include="Tables" />
+    <Folder Include="StoredProcedures\System" />
+    <Folder Include="Tables\System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="StoredProcedures\System\CreateUser.sql" />
+    <Build Include="Tables\System\User.sql" />
+    <Build Include="StoredProcedures\System\GetUserByUserName.sql" />
   </ItemGroup>
 </Project>
