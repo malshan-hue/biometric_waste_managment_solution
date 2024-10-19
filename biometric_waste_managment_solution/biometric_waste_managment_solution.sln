@@ -7,13 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bwms_core_api", "bwms_core_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bwms_core_domain", "bwms_core_domain\bwms_core_domain.csproj", "{E5AB740E-420B-4961-8D62-6B533D60A230}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bwms_core_business_layer", "bwms_core_business_layer\bwms_core_business_layer.csproj", "{BA9A83D1-0741-4757-A718-6341E18F0129}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bwms_core_business_layer", "bwms_core_business_layer\bwms_core_business_layer.csproj", "{BA9A83D1-0741-4757-A718-6341E18F0129}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bwms_core_repository", "bwms_core_repository\bwms_core_repository.csproj", "{3D144F72-7106-493E-8CEE-802F9B07D873}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bwms_core_repository", "bwms_core_repository\bwms_core_repository.csproj", "{3D144F72-7106-493E-8CEE-802F9B07D873}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "bwms_core_database", "bwms_core_database\bwms_core_database.sqlproj", "{0F601ABD-FFA1-48CE-AEE2-89CBAD6B0FA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bwms_core_web_application", "bwms_core_web_application\bwms_core_web_application.csproj", "{95A594B4-B9E7-4B99-A1FA-A2F169AAE9C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "bwms_core_web_application", "bwms_core_web_application\bwms_core_web_application.csproj", "{95A594B4-B9E7-4B99-A1FA-A2F169AAE9C3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bwms_core_unit_test", "bwms_core_unit_test\bwms_core_unit_test.csproj", "{3BDC10DE-B60A-4CB7-882C-F0317F41FB51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +49,10 @@ Global
 		{95A594B4-B9E7-4B99-A1FA-A2F169AAE9C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95A594B4-B9E7-4B99-A1FA-A2F169AAE9C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95A594B4-B9E7-4B99-A1FA-A2F169AAE9C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BDC10DE-B60A-4CB7-882C-F0317F41FB51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BDC10DE-B60A-4CB7-882C-F0317F41FB51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BDC10DE-B60A-4CB7-882C-F0317F41FB51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BDC10DE-B60A-4CB7-882C-F0317F41FB51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
