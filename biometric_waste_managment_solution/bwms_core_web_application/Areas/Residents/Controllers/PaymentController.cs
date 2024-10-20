@@ -4,19 +4,34 @@ using Stripe;
 using bwms_core_domain.SystemModels;
 using Newtonsoft.Json;
 using devspark_core_model.SystemModels;
+using bwms_core_business_layer.Interfaces;
+using bwms_core_domain.ResidentsModels;
+using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace bwms_core_web_application.Areas.Residents.Controllers
 {
     [Area("Residents")]
+    [Authorize]
     public class PaymentController : Controller
     {
-        public async Task<IActionResult> Index()
+        private readonly IResidanceService _residanceService;
+        public PaymentController(IResidanceService residanceService)
         {
-            return View();
+            _residanceService = residanceService;
         }
 
         [HttpGet]
-        public async Task<IActionResult> Checkout()
+        public async Task<IActionResult> Index()
+        {
+            IQueryable<bwms_core_domain.ResidentsModels.Payment> payments = new List<bwms_core_domain.ResidentsModels.Payment>().AsQueryable();
+            var paymentsList = await _residanceService.GetAllpayments();
+            payments = paymentsList.AsQueryable();
+            return View(payments.ToList());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Checkout(int paymentId)
         {
             List<Payment> paymentList = new List<Payment>
             {

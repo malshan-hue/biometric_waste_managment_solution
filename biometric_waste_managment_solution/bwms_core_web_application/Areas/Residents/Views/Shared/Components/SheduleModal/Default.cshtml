@@ -6,7 +6,7 @@
 <!-- Modal -->
 <div class="modal fade" id="shedule-modal" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog">
-        <form class="modal-content" asp-action="" asp-controller="">
+        <form class="modal-content" asp-action="CreateSchedule" asp-controller="Schedule" method="post" data-ajax="true" data-ajax-begin="createScheduleBegin" data-ajax-complete="createScheduleComplete">
 
             <div class="modal-header">
                 <h5 class="modal-title" id="shedule-modal-title">Waste pickup schedule</h5>

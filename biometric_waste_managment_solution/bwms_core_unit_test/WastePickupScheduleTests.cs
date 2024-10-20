@@ -39,7 +39,7 @@ namespace bwms_core_unit_test
                 WasteTypeEnum = WasteTypeEnum.Organic,
                 PickupStatusEnum = PickupStatusEnum.Completed,
                 Address = "123 Green St",
-                EstimatedVolume = 50.5,
+                EstimatedVolume = 50.5M,
                 DriverId = 10,
                 MapLocation = "37.7749,-122.4194",
                 Customer = new Customer { CustomerId = 101, CustomerName = "John Doe" }
@@ -51,7 +51,7 @@ namespace bwms_core_unit_test
             Assert.Equal(WasteTypeEnum.Organic, schedule.WasteTypeEnum);
             Assert.Equal(PickupStatusEnum.Completed, schedule.PickupStatusEnum);
             Assert.Equal("123 Green St", schedule.Address);
-            Assert.Equal(50.5, schedule.EstimatedVolume);
+            Assert.Equal(50.5M, schedule.EstimatedVolume);
             Assert.Equal(10, schedule.DriverId);
             Assert.Equal("37.7749,-122.4194", schedule.MapLocation);
             Assert.Equal(101, schedule.Customer.CustomerId);
@@ -63,7 +63,7 @@ namespace bwms_core_unit_test
         {
             var schedule = new WastePickupSchedule
             {
-                EstimatedVolume = -10.0 
+                EstimatedVolume = -10.0M 
             };
 
             Assert.True(schedule.EstimatedVolume > 0);

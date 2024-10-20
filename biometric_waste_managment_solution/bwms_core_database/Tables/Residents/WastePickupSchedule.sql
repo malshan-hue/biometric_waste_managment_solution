@@ -6,7 +6,7 @@
     [WasteTypeEnum] INT NULL, 
     [PickupStatusEnum] INT NULL,
     [Address] NVARCHAR(500)  NULL,
-    [EstimatedVolume] FLOAT NULL,
+    [EstimatedVolume] DECIMAL(18,2) NULL,
     [DriverId] INT NULL,
     [MapLocation] NVARCHAR(500) NULL,
 

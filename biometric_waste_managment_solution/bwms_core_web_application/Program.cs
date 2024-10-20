@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using bwms_core_business_layer.Interfaces;
 using bwms_core_business_layer;
+using devspark_core_business_layer.SystemService.Interfaces;
+using devspark_core_business_layer.SystemService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,8 +13,8 @@ builder.Services.AddSession();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
 .AddCookie(options =>
 {
-    options.LoginPath = "/Acccess/Login";
-    options.LogoutPath = "/Acccess/Logout";
+    options.LoginPath = "/Access/Login";
+    options.LogoutPath = "/Access/Logout";
     options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
 });
 
@@ -29,8 +31,10 @@ builder.Services.AddSingleton<IDatabaseService>(provider =>
 });
 #endregion
 
-#region USER SERVICE
+#region SERVICES
 builder.Services.AddSingleton<IUserService, UserServiceImpl>();
+builder.Services.AddSingleton<IResidanceService, ResidanceServiceImpl>();
+builder.Services.AddSingleton<IMailService, MailServiceImpl>();
 #endregion
 var app = builder.Build();
 

@@ -1,4 +1,7 @@
-﻿@{
+﻿@using bwms_core_domain.ResidentsModels
+@model IEnumerable<WastePickupSchedule>
+
+@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -31,78 +34,42 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Scheduled Date</th>
-                                        <th>Waste Type</th>
-                                        <th>Pickup Status</th>
-                                        <th>Address</th>
-                                        <th>Estimated Volume (kg)</th>
-                                        <th>Driver</th>
-                                        <th>Map Location</th>
+                                        <th>@Html.DisplayNameFor(model => model.ScheduledDate)</th>
+                                        <th>@Html.DisplayNameFor(model => model.WasteTypeEnum)</th>
+                                        <th>@Html.DisplayNameFor(model => model.PickupStatusEnum)</th>
+                                        <th>@Html.DisplayNameFor(model => model.Address)</th>
+                                        <th>@Html.DisplayNameFor(model => model.EstimatedVolume)</th>
                                         <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
-                                    <tr>
-                                        <td>2024-10-21</td>
-                                        <td>Organic Waste</td>
-                                        <td><span class="badge bg-label-warning">Scheduled</span></td>
-                                        <td>123 Green St, Springfield</td>
-                                        <td>250 kg</td>
-                                        <td>
-                                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                                <li data-bs-toggle="tooltip"
-                                                    data-popup="tooltip-custom"
-                                                    data-bs-placement="top"
-                                                    class="avatar avatar-xs pull-up"
-                                                    title="John Doe">
-                                                    <img src="../assets/img/avatars/driver1.png" alt="Avatar" class="rounded-circle" />
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td><a href="#">View Map</a></td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Update Schedule</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Cancel</a>
+                                    @foreach (var schedule in Model)
+                                    {
+                                        <tr>
+                                            <td>@schedule.ScheduledDate</td>
+                                            <td>@schedule.WasteTypeEnum</td>
+                                            @if(schedule.PickupStatusEnum == 0)
+                                            {
+                                                <td><span class="badge bg-label-warning">Pending</span></td>
+                                            }
+                                            else{
+                                                <td><span class="badge bg-label-success">Collected</span></td>
+                                            }
+                                            <td>@schedule.Address</td>
+                                            <td>@schedule.EstimatedVolume</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Update Schedule</a>
+                                                        <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Cancel</a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2024-10-22</td>
-                                        <td>Plastic & Recyclables</td>
-                                        <td><span class="badge bg-label-success">Completed</span></td>
-                                        <td>456 Blue Ave, Springfield</td>
-                                        <td>150 kg</td>
-                                        <td>
-                                            <ul class="list-unstyled users-list m-0 avatar-group d-flex align-items-center">
-                                                <li data-bs-toggle="tooltip"
-                                                    data-popup="tooltip-custom"
-                                                    data-bs-placement="top"
-                                                    class="avatar avatar-xs pull-up"
-                                                    title="Jane Smith">
-                                                    <img src="../assets/img/avatars/driver2.png" alt="Avatar" class="rounded-circle" />
-                                                </li>
-                                            </ul>
-                                        </td>
-                                        <td><a href="#">View Map</a></td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-edit-alt me-1"></i> Update Schedule</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-1"></i> Cancel</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!-- Add more rows as needed -->
+                                            </td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
 
@@ -117,18 +84,51 @@
 </div>
 <!-- / Content -->
 
-@await Component.InvokeAsync("SheduleModal")
+<div id="shedule-modal-container" class="">
+</div>
 
 @section Scripts {
 
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/jquery-ajax-unobtrusive/dist/jquery.unobtrusive-ajax.js"></script>
+
     <script>
+
         $(document).ready(function () {
+
+            $.ajax({
+                url: '@Url.Action("SheduleModal", "Schedule")',
+                type: 'GET',
+                success: function (data) {
+
+                    $('#shedule-modal-container').html(data);
+                    loadDatePicker();
+
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error: " + error);
+                }
+            });
+
+        });
+
+        function loadDatePicker(){
             $("#scheduled-date").datepicker({
                 dateFormat: 'dd/mm/yy',
                 changeMonth: true,
                 changeYear: true
             });
-        });
+        }
+
+        var createScheduleBegin = function () {
+        };
+
+        var createScheduleComplete = function (xhr, status) {
+
+
+            location.reload();
+        }
     </script>
 
 

@@ -8,5 +8,10 @@ namespace bwms_core_web_application.Controllers
         {
             return View();
         }
+
+        public IActionResult CustomerInvoiceTemplate()
+        {
+            return View();
+        }
     }
 }

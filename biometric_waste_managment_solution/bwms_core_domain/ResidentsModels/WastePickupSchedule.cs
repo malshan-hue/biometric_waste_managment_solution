@@ -27,7 +27,7 @@ namespace bwms_core_domain.ResidentsModels
         public string Address { get; set; } = string.Empty;
 
         [DisplayName("Estimated Volume (Kg)")]
-        public double EstimatedVolume { get; set; }
+        public decimal EstimatedVolume { get; set; }
 
         public int? DriverId { get; set; }
 

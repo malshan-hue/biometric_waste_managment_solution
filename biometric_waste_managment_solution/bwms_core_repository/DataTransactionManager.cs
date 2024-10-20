@@ -1,4 +1,5 @@
-﻿using bwms_core_domain.SystemModels;
+﻿using bwms_core_domain.ResidentsModels;
+using bwms_core_domain.SystemModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,36 @@ namespace bwms_core_repository
             }
         }
 
+        #endregion
+
+        #region RESIDANCE REPOSITORY
+        private DataManager<Payment> _paymentDataManager;
+        public DataManager<Payment> PaymentDataManager
+        {
+            get
+            {
+                if (this._paymentDataManager == null)
+                {
+                    this._paymentDataManager = new DataManager<Payment>(_connectionString);
+                }
+
+                return this._paymentDataManager;
+            }
+        }
+
+        private DataManager<WastePickupSchedule> _wastePickupScheduleDataManager;
+        public DataManager<WastePickupSchedule> WastePickupScheduleDataManager
+        {
+            get
+            {
+                if (this._wastePickupScheduleDataManager == null)
+                {
+                    this._wastePickupScheduleDataManager = new DataManager<WastePickupSchedule>(_connectionString);
+                }
+
+                return this._wastePickupScheduleDataManager;
+            }
+        }
         #endregion
 
         private bool _disposed = false;

@@ -1,4 +1,7 @@
-﻿@{
+﻿@using bwms_core_domain.ResidentsModels
+@model IEnumerable<Payment>
+
+@{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -19,7 +22,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="row">
-                            <h5 class="card-header">Table Basic</h5>
+                            <h5 class="card-header">Your Payments</h5>
                         </div>
                         <div class="row">
                             <div class="col-12">
@@ -27,52 +30,43 @@
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th>Payment Number</th>
-                                                <th>Month</th>
-                                                <th>Amount</th>
-                                                <th>Discoount</th>
-                                                <th>Total Payable</th>
-                                                <th>Payment Status</th>
+                                                <th>@Html.DisplayNameFor(model => model.PaymentNumber)</th>
+                                                <th>@Html.DisplayNameFor(model => model.Month)</th>
+                                                <th>@Html.DisplayNameFor(model => model.Amount)</th>
+                                                <th>@Html.DisplayNameFor(model => model.Discount)</th>
+                                                <th>@Html.DisplayNameFor(model => model.TotalPayable)</th>
+                                                <th>@Html.DisplayNameFor(model => model.PaymentStatus)</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody class="table-border-bottom-0">
-                                            <tr>
-                                                <td>2024-10-21</td>
-                                                <td>Organic Waste</td>
-                                                <td><span class="badge bg-label-warning">Scheduled</span></td>
-                                                <td>123 Green St, Springfield</td>
-                                                <td>250 kg</td>
-                                                <td><span class="badge bg-label-warning">Paid</span></td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" asp-action="Checkout" asp-controller="Payment"><i class="bx bx-trash me-1"></i>Pay</a>
+
+                                            @foreach(var payment in Model)
+                                            {
+                                                <tr>
+                                                    <td>@payment.PaymentNumber</td>
+                                                    <td>@payment.Month</td>
+                                                    <td>@payment.Amount</td>
+                                                    <td>@payment.Discount</td>
+                                                    <td>@payment.TotalPayable</td>
+                                                    @if (payment.PaymentStatus.Equals("Paid"))
+                                                    {
+                                                        <td><span class="badge bg-label-success">@payment.PaymentStatus</span></td>
+                                                    }else{
+                                                        <td><span class="badge bg-label-danger">@payment.PaymentStatus</span></td>
+                                                    }
+                                                    <td>
+                                                        <div class="dropdown">
+                                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                                            </button>
+                                                            <div class="dropdown-menu">
+                                                                <a class="dropdown-item" asp-action="Checkout" asp-controller="Payment" asp-route-paymentId="@payment.PaymentId"><i class="bx bx-trash me-1"></i>Pay</a>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>2024-10-22</td>
-                                                <td>Plastic & Recyclables</td>
-                                                <td><span class="badge bg-label-success">Completed</span></td>
-                                                <td>456 Blue Ave, Springfield</td>
-                                                <td>150 kg</td>
-                                                <td><span class="badge bg-label-warning">Not-Paid</span></td>
-                                                <td>
-                                                    <div class="dropdown">
-                                                        <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                                        </button>
-                                                        <div class="dropdown-menu">
-                                                            <a class="dropdown-item" asp-action="Checkout" asp-controller="Payment"><i class="bx bx-trash me-1"></i>Pay</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <!-- Add more rows as needed -->
+                                                    </td>
+                                                </tr>
+                                            }
                                         </tbody>
                                     </table>
 

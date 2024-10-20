@@ -1,0 +1,7 @@
+﻿CREATE PROCEDURE [dbo].[GetAllpayments]
+AS
+BEGIN
+	
+	SELECT * FROM Payment FOR JSON PATH
+
+END

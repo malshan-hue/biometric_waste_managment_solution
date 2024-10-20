@@ -71,5 +71,10 @@
     <Build Include="Tables\Authority\EmployeeDevice.sql" />
     <Build Include="Tables\Residents\Customer.sql" />
     <Build Include="Tables\Residents\WastePickupSchedule.sql" />
+    <Build Include="Tables\Residents\Payment.sql" />
+    <Build Include="StoredProcedures\UpdatePaymentStauts.sql" />
+    <Build Include="StoredProcedures\CreateSchedule.sql" />
+    <Build Include="StoredProcedures\GetAllpayments.sql" />
+    <Build Include="StoredProcedures\GetAllShedules.sql" />
   </ItemGroup>
 </Project>

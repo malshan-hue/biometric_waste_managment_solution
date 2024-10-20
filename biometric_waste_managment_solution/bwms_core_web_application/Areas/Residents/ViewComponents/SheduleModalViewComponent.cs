@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using bwms_core_domain.ResidentsModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace bwms_core_web_application.Areas.Residents.ViewComponents
 {
