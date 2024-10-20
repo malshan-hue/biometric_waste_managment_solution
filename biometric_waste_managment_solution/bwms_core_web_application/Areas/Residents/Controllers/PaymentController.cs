@@ -37,22 +37,22 @@ namespace bwms_core_web_application.Areas.Residents.Controllers
             {
                 new Payment
                 {
-                    InvoiceNumber = "INV123456",
-                    PaymentAmount = 150.00m,  
+                    InvoiceNumber = "P001",
+                    PaymentAmount = 950.00m,  
                     PaymentDate = DateTime.Now.AddDays(-2), 
                     PaymentStatus = "Paid"
                 },
                 new Payment
                 {
-                    InvoiceNumber = "INV123457",
-                    PaymentAmount = 200.00m,
+                    InvoiceNumber = "P002",
+                    PaymentAmount = 1000.00m,
                     PaymentDate = DateTime.Now.AddDays(-1),
                     PaymentStatus = "Pending"
                 },
                 new Payment
                 {
-                    InvoiceNumber = "INV123458",
-                    PaymentAmount = 125.50m,
+                    InvoiceNumber = "P003",
+                    PaymentAmount = 1050.00m,
                     PaymentDate = DateTime.Now,
                     PaymentStatus = "Paid"
                 }

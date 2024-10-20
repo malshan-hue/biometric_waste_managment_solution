@@ -59,14 +59,55 @@
                                 </thead>
                                 <tbody class="table-border-bottom-0">
                                     <tr>
-                                        <td>2024-10-21</td>
-                                        <td>Organic Waste</td>
-                                        <td><span class="badge bg-label-warning">Scheduled</span></td>
-                                        <td>123 Green St, Springfield</td>
+                                        <td>Jehan Silva</td>
+                                        <td>1234567890</td>
+                                        <td>johndoe@example.com</td>
+                                        <td>Colombo 7, Highland Para</td>
                                         <td>250 kg</td>
-                                        <td><a href="#">View Map</a></td>
+                                        <td><span class="badge bg-label-warning">Scheduled</span></td>
                                         <td><a href="#">View Map</a></td>
                                     </tr>
+
+                                    <tr>
+                                        <td>John Smith</td>
+                                        <td>0987654321</td>
+                                        <td>john.smith@example.com</td>
+                                        <td>Colombo 3, Batharamulla Para</td>
+                                        <td>300 kg</td>
+                                        <td><span class="badge bg-label-warning">Scheduled</span></td>
+                                        <td><a href="#">View Map</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Sara Williams</td>
+                                        <td>1122334455</td>
+                                        <td>sarah.williams@example.com</td>
+                                        <td>Colombo 5, Bevin Para</td>
+                                        <td>150 kg</td>
+                                        <td><span class="badge bg-label-warning">Scheduled</span></td>
+                                        <td><a href="#">View Map</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Michael Johnson</td>
+                                        <td>6677889900</td>
+                                        <td>michael.johnson@example.com</td>
+                                        <td>Colombo 2, Peters Para</td>
+                                        <td>200 kg</td>
+                                        <td><span class="badge bg-label-success">Completed</span></td>
+                                        <td><a href="#">View Map</a></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Alice Brown</td>
+                                        <td>2233445566</td>
+                                        <td>alice.brown@example.com</td>
+                                        <td>Colombo 8, Brock Para</td>
+                                        <td>180 kg</td>
+                                        <td><span class="badge bg-label-warning">Scheduled</span></td>
+                                        <td><a href="#">View Map</a></td>
+                                    </tr>
+
                                 </tbody>
                             </table>
 
@@ -83,46 +124,82 @@
 
 @section Scripts {
     <script>
-        // Example JSON data from backend (you can replace it with actual JSON data passed)
+
         var customerData = [
             {
                 "customerName": "Jehan Methana Inne",
                 "latitude": 6.914861,
                 "longitude": 79.972222,
                 "contactNumber": "1234567890",
-                "email": "johndoe@example.com",
-                "address": "Ciggarate ekak gananwa",
+                "email": "jehan@example.com",
+                "address": "Nata Nata",
                 "estimatedVolume": "250 kg",
+                "binStatus": "Scheduled"
+            },
+            {
+                "customerName": "Asha Kumar",
+                "latitude": 6.909056,
+                "longitude": 79.970204,
+                "contactNumber": "2345678901",
+                "email": "asha.kumar@example.com",
+                "address": "Nugegoda, Colombo",
+                "estimatedVolume": "300 kg",
+                "binStatus": "Pending"
+            },
+            {
+                "customerName": "Pradeep Fernando",
+                "latitude": 6.921232,
+                "longitude": 79.974846,
+                "contactNumber": "3456789012",
+                "email": "pradeep.fernando@example.com",
+                "address": "Sri Jayawardenepura Kotte",
+                "estimatedVolume": "150 kg",
+                "binStatus": "Scheduled"
+            },
+            {
+                "customerName": "Saman Perera",
+                "latitude": 6.947102,
+                "longitude": 79.985438,
+                "contactNumber": "4567890123",
+                "email": "saman.perera@example.com",
+                "address": "Piliyandala, Colombo",
+                "estimatedVolume": "200 kg",
+                "binStatus": "Completed"
+            },
+            {
+                "customerName": "Anjali De Silva",
+                "latitude": 6.926624,
+                "longitude": 79.973624,
+                "contactNumber": "5678901234",
+                "email": "anjali.desilva@example.com",
+                "address": "Kohuwala, Colombo",
+                "estimatedVolume": "180 kg",
                 "binStatus": "Scheduled"
             }
         ];
 
-        // Initialize the map
-        var map = L.map('map').setView([6.914861, 79.972222], 13); // Default coordinates
 
-        // Add map tiles
+        var map = L.map('map').setView([6.914861, 79.972222], 13);
+
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             attribution: 'Waste Collection Map data &copy; <a href="https://www.openstreetmap.org/copyright">BWMS</a>'
         }).addTo(map);
 
-        // Add markers and bind popups for each customer
         customerData.forEach(function (customer) {
             var marker = L.marker([customer.latitude, customer.longitude], {
                 icon: L.divIcon({
-                    className: 'blinking-marker', // Class for blinking effect
+                    className: 'blinking-marker',
                     html: '<div class="blinker"></div>'
                 })
             }).addTo(map)
                 .bindPopup('<b>' + customer.customerName + '</b><br>' + customer.address);
 
-            // Hover effect to show popup
             marker.on('mouseover', function (e) {
                 this.openPopup();
             }).on('mouseout', function (e) {
                 this.closePopup();
             });
 
-            // Append data to the table
             $('#customer-table').append(`
                 <tr>
                     <td>${customer.customerName}</td>
@@ -136,7 +213,6 @@
             `);
         });
 
-        // jQuery to toggle blinking effect
         setInterval(function () {
             $('.blinker').toggleClass('active');
         }, 1000);

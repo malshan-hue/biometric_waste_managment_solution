@@ -29,19 +29,107 @@
                                         <th>Address</th>
                                         <th>Estimated Volume (kg)</th>
                                         <th>Bin Status</th>
-                                        <th>Generate QR</th>
+                                        <th>Download</th>
+                                        <th>Email</th>
                                     </tr>
                                 </thead>
                                 <tbody class="table-border-bottom-0">
                                     <tr>
-                                        <td>2024-10-21</td>
-                                        <td>Organic Waste</td>
-                                        <td><span class="badge bg-label-warning">Scheduled</span></td>
-                                        <td>123 Green St, Springfield</td>
+                                        <td>Jehan Silva</td>
+                                        <td>1234567890</td>
+                                        <td>johndoe@example.com</td>
+                                        <td>Colombo 7, Highland Para</td>
                                         <td>250 kg</td>
-                                        <td><a href="#">View Map</a></td>
-                                        <td><a href="#">View Map</a></td>
+                                        <td><span class="badge bg-label-warning">Scheduled</span></td>
+                                        <td>
+                                            <form asp-action="DownloadInvoice" asp-controller="Customers" method="post">
+                                                <button type="submit" class="btn btn-primary btn-sm">Download Invoice</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form asp-action="EmailInvoice" asp-controller="Customers" method="post">
+                                                <button type="submit" class="btn btn-primary btn-sm">Email Invoice</button>
+                                            </form>
+                                        </td>
+                                        
                                     </tr>
+
+                                    <tr>
+                                        <td>John Smith</td>
+                                        <td>0987654321</td>
+                                        <td>john.smith@example.com</td>
+                                        <td>Colombo 3, Batharamulla Para</td>
+                                        <td>300 kg</td>
+                                        <td><span class="badge bg-label-warning">Scheduled</span></td>
+                                        <td>
+                                            <form asp-action="DownloadInvoice" asp-controller="Customers" method="post">
+                                                <button type="submit" class="btn btn-primary btn-sm">Download Invoice</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form asp-action="EmailInvoice" asp-controller="Customers" method="post">
+                                                <button type="submit" class="btn btn-primary btn-sm">Email Invoice</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Sara Williams</td>
+                                        <td>1122334455</td>
+                                        <td>sarah.williams@example.com</td>
+                                        <td>Colombo 5, Bevin Para</td>
+                                        <td>150 kg</td>
+                                        <td><span class="badge bg-label-warning">Scheduled</span></td>
+                                        <td>
+                                            <form asp-action="DownloadInvoice" asp-controller="Customers" method="post">
+                                                <button type="submit" class="btn btn-primary btn-sm">Download Invoice</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form asp-action="EmailInvoice" asp-controller="Customers" method="post">
+                                                <button type="submit" class="btn btn-primary btn-sm">Email Invoice</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Michael Johnson</td>
+                                        <td>6677889900</td>
+                                        <td>michael.johnson@example.com</td>
+                                        <td>Colombo 2, Peters Para</td>
+                                        <td>200 kg</td>
+                                        <td><span class="badge bg-label-success">Completed</span></td>
+                                        <td>
+                                            <form asp-action="DownloadInvoice" asp-controller="Customers" method="post">
+                                                <button type="submit" class="btn btn-primary btn-sm">Download Invoice</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form asp-action="EmailInvoice" asp-controller="Customers" method="post">
+                                                <button type="submit" class="btn btn-primary btn-sm">Email Invoice</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Alice Brown</td>
+                                        <td>2233445566</td>
+                                        <td>alice.brown@example.com</td>
+                                        <td>Colombo 8, Brock Para</td>
+                                        <td>180 kg</td>
+                                        <td><span class="badge bg-label-warning">Scheduled</span></td>
+                                        <td>
+                                            <form asp-action="DownloadInvoice" asp-controller="Customers" method="post">
+                                                <button type="submit" class="btn btn-primary btn-sm">Download Invoice</button>
+                                            </form>
+                                        </td>
+                                        <td>
+                                            <form asp-action="EmailInvoice" asp-controller="Customers" method="post">
+                                                <button type="submit" class="btn btn-primary btn-sm">Email Invoice</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+
                                 </tbody>
                             </table>
 
