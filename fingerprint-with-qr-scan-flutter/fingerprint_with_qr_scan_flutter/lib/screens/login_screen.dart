@@ -99,24 +99,76 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(_authMessage),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _checkBiometricsAndAuthenticate,
-              child: const Text('Authenticate'),
+      backgroundColor: Colors.grey[100],
+      body: Stack(
+        children: [
+          // Gradient background
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.blueAccent, Colors.lightBlueAccent],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
-            const SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _navigateToRegister,
-              child: const Text('Register'),
+          ),
+          Center(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(24.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  // Logo or icon
+                  Icon(
+                    Icons.fingerprint,
+                    size: 100,
+                    color: Colors.white.withOpacity(0.8),
+                  ),
+                  const SizedBox(height: 20),
+                  // Authentication message
+                  Text(
+                    _authMessage,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.white,
+                      fontWeight: FontWeight.w400,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(height: 40),
+                  // Authenticate button
+                  ElevatedButton(
+                    onPressed: _checkBiometricsAndAuthenticate,
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 14, horizontal: 60),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      backgroundColor: Colors.white,
+                      foregroundColor: Colors.blueAccent,
+                      elevation: 5,
+                      shadowColor: Colors.blueAccent.withOpacity(0.5),
+                    ),
+                    child: const Text(
+                      'Authenticate',
+                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  // Navigate to Register
+                  TextButton(
+                    onPressed: _navigateToRegister,
+                    child: const Text(
+                      'New user? Register here',
+                      style: TextStyle(color: Colors.white, fontSize: 14),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

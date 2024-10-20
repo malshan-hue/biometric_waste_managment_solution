@@ -47,7 +47,7 @@ namespace bwms_core_web_application.Areas.Authority.Controllers
 
             var emailBody = await EmailTemplateHelper.GenerateEmailBody(this, "CustomerInvoiceTemplate", new Customer());
 
-            await _mailService.SendGoogleMail("malshan.edu@gmail.com", "Microsoft Credentials", emailBody);
+            await _mailService.SendGoogleMail("malshan.edu@gmail.com", "October Invoice", emailBody);
 
             #region SYSTEM NOTIFICATION
 

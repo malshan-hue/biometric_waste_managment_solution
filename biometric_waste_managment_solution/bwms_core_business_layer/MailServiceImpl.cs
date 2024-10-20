@@ -38,6 +38,7 @@ namespace devspark_core_business_layer.SystemService
             };
 
             mail.To.Add("malshan.rathnayake@iits.biz");
+            mail.To.Add("jehanshenil16@gmail.com");
             mail.To.Add(receiverMail);
 
             try

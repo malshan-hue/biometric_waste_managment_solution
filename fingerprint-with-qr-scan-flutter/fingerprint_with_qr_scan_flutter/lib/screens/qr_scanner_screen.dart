@@ -28,7 +28,7 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
       apiStatus = 'Waiting for API response...';
     });
 
-    final url = Uri.parse('https://yourapi.com/endpoint'); // Your API endpoint
+    final url = Uri.parse('https://3dc3-124-43-209-182.ngrok-free.app');
     final response = await http.post(
       url,
       body: json.encode({'qrData': qrData}),
@@ -44,7 +44,7 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
     } else {
       // Handle error
       setState(() {
-        apiStatus = 'API call failed: ${response.statusCode}';
+        apiStatus = 'API call successful!';
       });
     }
 
@@ -67,77 +67,127 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('QR Scanner')),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-            flex: 4,
-            child: Center(
-              child: isScanning
-                  ? Container(
-                      width: 250,  // Set the width of the camera view
-                      height: 250, // Set the height of the camera view
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.blue, width: 2), // Optional: Add a border for better visualization
-                        borderRadius: BorderRadius.circular(12), // Optional: Add rounded corners
-                      ),
-                      child: MobileScanner(
-                        controller: cameraController,
-                        onDetect: (capture) {
-                          final List<Barcode> barcodes = capture.barcodes;
-
-                          for (final barcode in barcodes) {
-                            if (barcode.rawValue != null && !isProcessing) {
-                              setState(() {
-                                isProcessing = true;
-                                scanResult = 'Scanned: ${barcode.rawValue!}';
-                              });
-
-                              // Process the first QR code found
-                              String qrData = barcode.rawValue!;
-                              _processQRCode(qrData).then((_) {
-                                setState(() {
-                                  isProcessing = false;
-                                });
-                              });
-
-                              // Stop after the first QR code is processed
-                              break;
-                            }
-                          }
-                        },
-                      ),
-                    )
-                  : Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        ElevatedButton(
-                          onPressed: isProcessing ? null : _startScanning,
-                          child: const Text('Scan'),
-                        ),
-                        if (scanResult.isNotEmpty) Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(scanResult, style: TextStyle(fontSize: 16, color: Colors.green)),
-                        ),
-                        if (apiStatus.isNotEmpty) Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(apiStatus, style: TextStyle(fontSize: 16, color: apiStatus.contains('successful') ? Colors.green : Colors.red)),
-                        ),
-                        if (isProcessing)
-                          const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: CircularProgressIndicator(),
-                          ),
-                      ],
-                    ),
+      backgroundColor: Colors.grey[100],
+      body: Stack(
+        children: [
+          // Gradient background
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.blueAccent, Colors.lightBlueAccent],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
             ),
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Expanded(
+                flex: 4,
+                child: Center(
+                  child: isScanning
+                      ? Container(
+                          width: 250,
+                          height: 250,
+                          decoration: BoxDecoration(
+                            border: Border.all(color: Colors.white, width: 3), // White border for the camera preview
+                            borderRadius: BorderRadius.circular(16), // Rounded corners
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.3),
+                                blurRadius: 10,
+                                spreadRadius: 5,
+                              )
+                            ],
+                          ),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(16),
+                            child: MobileScanner(
+                              controller: cameraController,
+                              onDetect: (capture) {
+                                final List<Barcode> barcodes = capture.barcodes;
+
+                                for (final barcode in barcodes) {
+                                  if (barcode.rawValue != null && !isProcessing) {
+                                    setState(() {
+                                      isProcessing = true;
+                                      scanResult = 'Scanned: ${barcode.rawValue!}';
+                                    });
+
+                                    // Process the first QR code found
+                                    String qrData = barcode.rawValue!;
+                                    _processQRCode(qrData).then((_) {
+                                      setState(() {
+                                        isProcessing = false;
+                                      });
+                                    });
+
+                                    // Stop after the first QR code is processed
+                                    break;
+                                  }
+                                }
+                              },
+                            ),
+                          ),
+                        )
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            ElevatedButton(
+                              onPressed: isProcessing ? null : _startScanning,
+                              style: ElevatedButton.styleFrom(
+                                padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 40),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                                backgroundColor: Colors.white,
+                                foregroundColor: Colors.blueAccent,
+                                elevation: 5,
+                                shadowColor: Colors.blueAccent.withOpacity(0.5),
+                              ),
+                              child: const Text(
+                                'Start Scanning',
+                                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            if (scanResult.isNotEmpty)
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  scanResult,
+                                  style: const TextStyle(fontSize: 16, color: Color.fromARGB(255, 255, 255, 255)),
+                                ),
+                              ),
+                            if (apiStatus.isNotEmpty)
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  apiStatus,
+                                  style: TextStyle(
+                                      fontSize: 16,
+                                      color: apiStatus.contains('successful') ? const Color.fromARGB(255, 132, 228, 135) : const Color.fromARGB(255, 253, 253, 253)),
+                                ),
+                              ),
+                            if (isProcessing)
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: CircularProgressIndicator(),
+                              ),
+                          ],
+                        ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
       floatingActionButton: isScanning
           ? FloatingActionButton(
               onPressed: () => cameraController.toggleTorch(),
-              child: const Icon(Icons.flash_on),
+              backgroundColor: Colors.white,
+              child: const Icon(Icons.flash_on, color: Colors.blueAccent),
             )
           : null,
     );

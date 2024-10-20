@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import '../models/employee.dart'; // Import the Employee model
 
 class EmployeeService {
-  final String baseUrl = 'https://467e-2407-c00-d001-e8c8-d13b-5772-72cf-38dd.ngrok-free.app/api';  // Update with your actual base API URL
+  final String baseUrl = 'https://3dc3-124-43-209-182.ngrok-free.app/api';  // Update with your actual base API URL
 
   // Register a new employee and return a boolean indicating success or failure
   Future<bool> registerEmployee(Employee employee) async {

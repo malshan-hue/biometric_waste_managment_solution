@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\bwms_core_business_layer\bwms_core_business_layer.csproj" />
     <ProjectReference Include="..\bwms_core_domain\bwms_core_domain.csproj" />
   </ItemGroup>
 
