@@ -28,7 +28,7 @@ class _QRScannerScreenState extends State<QRScannerScreen> {
       apiStatus = 'Waiting for API response...';
     });
 
-    final url = Uri.parse('https://3dc3-124-43-209-182.ngrok-free.app');
+    final url = Uri.parse('https://f54c-124-43-209-182.ngrok-free.app');
     final response = await http.post(
       url,
       body: json.encode({'qrData': qrData}),

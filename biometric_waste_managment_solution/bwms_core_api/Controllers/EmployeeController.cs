@@ -36,5 +36,6 @@ namespace bwms_core_api.Controllers
             await _authorityService.AuthenticateEmployee();
             return Ok(new Employee());
         }
+
     }
 }
